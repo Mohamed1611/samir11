@@ -9,7 +9,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -25,7 +28,7 @@ public class TestBase extends AbstractTestNGCucumberTests
 	public static WebDriver driver;
 
 	public static String DownloadPath = System.getProperty("user.dir")+ "/Downloads";
-	
+
 	public static ChromeOptions chromeoption()
 	{
 		ChromeOptions ChromeBrowserOptions = new ChromeOptions();
@@ -36,7 +39,7 @@ public class TestBase extends AbstractTestNGCucumberTests
 		ChromeBrowserOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		return ChromeBrowserOptions;
 	}
-	
+
 	public static FirefoxOptions firefoxoption()
 	{
 		FirefoxOptions FireFoxBrowserOptions = new FirefoxOptions();
@@ -47,10 +50,10 @@ public class TestBase extends AbstractTestNGCucumberTests
 		FireFoxBrowserOptions.addPreference("browser.download.manager.showWhenStarting",false);
 		FireFoxBrowserOptions.addPreference("pdfjs.disabled", true);
 		return FireFoxBrowserOptions;
-		
+
 	}
-	
-	
+
+
 	@BeforeSuite
 	@Parameters({"browser"})
 	public void OpenDriver(@Optional ("chrome") String browserName)
@@ -72,6 +75,20 @@ public class TestBase extends AbstractTestNGCucumberTests
 			String IEPath= System.getProperty("user.dir")+"\\Drivers\\IEDriverServer.exe";
 			System.setProperty("webdriver.ie.driver", IEPath);
 			driver = new InternetExplorerDriver();
+		}
+
+		//headless browser testing
+		else if(browserName.equalsIgnoreCase("headless"))
+		{
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setJavascriptEnabled(true);
+			caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, 
+					System.getProperty("user.dir")+"\\Drivers\\phantomjs.exe");
+			String[] phontomjsArgs = {"--web-security=no","--ignore-ssl-errors=yes"};
+			caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, phontomjsArgs);
+
+			driver = new PhantomJSDriver(caps);
+
 		}
 
 
