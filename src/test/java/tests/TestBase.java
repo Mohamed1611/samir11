@@ -77,7 +77,7 @@ public class TestBase extends AbstractTestNGCucumberTests
 			driver = new InternetExplorerDriver();
 		}
 
-		//headless browser testing
+		//headless browser using phantomJS testing
 		else if(browserName.equalsIgnoreCase("headless"))
 		{
 			DesiredCapabilities caps = new DesiredCapabilities();
@@ -89,6 +89,16 @@ public class TestBase extends AbstractTestNGCucumberTests
 
 			driver = new PhantomJSDriver(caps);
 
+		}
+		else if(browserName.equalsIgnoreCase("Chrome-headless"))
+		{
+			String ChromePath= System.getProperty("user.dir")+"\\Drivers\\chromedriver.exe";
+			System.setProperty("webdriver.chrome.driver", ChromePath);
+			ChromeOptions Options = new ChromeOptions();
+			Options.addArguments("--headless");
+			Options.addArguments("--window-size=1920,1080");
+			driver = new ChromeDriver(Options);
+		
 		}
 
 
