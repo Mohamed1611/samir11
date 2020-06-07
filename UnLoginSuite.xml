@@ -1,18 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="NopCommerce Regression Suite">
-	<parameter name="browser" value="Chrome-headless"></parameter>
+	<parameter name="browser" value="Chrome"></parameter>
 	<test name="Regression Test">
 		<classes>
 			<!-- name of package + test case -->
 			<class name="tests.NoteBookLinkHoverTest" />
 			<class name="tests.SearchPageTest" />
 			<class name="tests.ChangeCurrecnyTest" />
-			<class name="tests.SearchUsingListTest" />
+			<class name="tests.UserRegisterationUsingJavaFakerLibraryDDT" />
 			<class name="tests.ContactUsPageTest" />
-			<class name="tests.CompareProductsTest" />
-			<class name="tests.GuestCanCheckOutProductTest" />
-			<class name="tests.AddAndRemoveWishListTest" />
-			
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
