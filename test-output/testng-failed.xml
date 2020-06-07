@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [NopCommerce Regression Suite]">
+  <parameter name="browser" value="Chrome-headless"/>
+  <test thread-count="5" name="Regression Test(failed)">
     <classes>
-      <class name="runner.TestRunner">
+      <class name="tests.SearchUsingListTest">
         <methods>
+          <include name="TestUserCanSearchWithList"/>
           <include name="CloseDriver"/>
           <include name="OpenDriver"/>
-          <include name="runScenario" invocation-numbers="0 1"/>
           <include name="tearDownClass"/>
           <include name="TakingScreenshotOnFailure"/>
           <include name="setUpClass"/>
         </methods>
-      </class> <!-- runner.TestRunner -->
+      </class> <!-- tests.SearchUsingListTest -->
+      <class name="tests.GuestCanCheckOutProductTest">
+        <methods>
+          <include name="CloseDriver"/>
+          <include name="OpenDriver"/>
+          <include name="TestGuestCanCheckOutProduct"/>
+          <include name="tearDownClass"/>
+          <include name="TakingScreenshotOnFailure"/>
+          <include name="setUpClass"/>
+        </methods>
+      </class> <!-- tests.GuestCanCheckOutProductTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Regression Test(failed) -->
+</suite> <!-- Failed suite [NopCommerce Regression Suite] -->
