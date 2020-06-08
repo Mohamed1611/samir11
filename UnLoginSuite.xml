@@ -8,7 +8,7 @@
 			<class name="tests.SearchPageTest" />
 			<class name="tests.ChangeCurrecnyTest" />
 			<class name="tests.UserRegisterationUsingJavaFakerLibraryDDT" />
-			<class name="tests.ContactUsPageTest" />
+			
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
